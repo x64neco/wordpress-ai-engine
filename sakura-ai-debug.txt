@@ -1,0 +1,29 @@
+=== debug sakura ===
+connector: Array
+(
+    [name] => Sakura AI Engine
+    [description] => さくらインターネットの国内データセンターで稼働するAI Engine。OpenAI互換APIで高速・安全にAI機能を利用できます。
+    [type] => ai_provider
+    [authentication] => Array
+        (
+            [method] => api_key
+            [credentials_url] => https://cloud.sakura.ad.jp/
+            [setting_name] => connectors_ai_provider_sakura_ai_api_key
+        )
+
+    [plugin] => Array
+        (
+            [file] => wordpress-ai-engine/wordpress-ai-engine.php
+            [is_active] => __return_true
+        )
+
+)
+
+key: 4968c072-dcfd-4f4a-bdc4-ab44675eba2b:tKIU4d8le78PiqqxA6I/QLfJ0WOt3yrL8eWE0i+O
+providers: Array
+(
+    [0] => openai
+    [1] => sakura_ai
+)
+
+configured: 1
