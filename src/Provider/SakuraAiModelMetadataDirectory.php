@@ -13,17 +13,33 @@ use WordPress\AiClient\Messages\Enums\ModalityEnum;
 
 class SakuraAiModelMetadataDirectory implements ModelMetadataDirectoryInterface {
 
-	
+	/**
+	 * List all available model metadata.
+	 *
+	 * @return ModelMetadata[]
+	 */
 	public function listModelMetadata(): array {
 		return array( $this->buildGptOss120bMetadata() );
 	}
 
+	/**
+	 * Check whether metadata exists for the given model ID.
+	 *
+	 * @param string $modelId The model identifier.
+	 * @return bool
+	 */
 	public function hasModelMetadata( string $modelId ): bool {
 		return $modelId === 'gpt-oss-120b';
 	}
 
-	
-	//とりあえずgpt-oss-120bだけ
+	/**
+	 * Get metadata for the given model ID.
+	 *
+	 * Currently only gpt-oss-120b is supported.
+	 *
+	 * @param string $modelId The model identifier.
+	 * @return ModelMetadata
+	 */
 	public function getModelMetadata( string $modelId ): ModelMetadata {
 		if ( 'gpt-oss-120b' === $modelId ) {
 			return $this->buildGptOss120bMetadata();
@@ -35,7 +51,12 @@ class SakuraAiModelMetadataDirectory implements ModelMetadataDirectoryInterface 
 			array()
 		);
 	}
-	
+
+	/**
+	 * Build metadata for the GPT OSS 120B model.
+	 *
+	 * @return ModelMetadata
+	 */
 	private function buildGptOss120bMetadata(): ModelMetadata {
 		return new ModelMetadata(
 			'gpt-oss-120b',

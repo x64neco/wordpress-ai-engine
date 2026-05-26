@@ -1,0 +1,14 @@
+# Debug output files
+sakura-ai-debug.txt
+sakura-ai-register-error.txt
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

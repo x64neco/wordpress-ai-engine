@@ -1,10 +1,15 @@
 <?php
 /**
- * Plugin Name:       wordpress-ai-engine (unofficial)
+ * Plugin Name:       Sakura AI Connector
  * Plugin URI:        https://github.com/x64neco/wordpress-ai-engine
- * Description:       注意:非公式です。ツールのコネクタの承認から承認して使えます。
- * @since 1.0.0
+ * Description:       Connect WordPress to Sakura Internet AI Engine via the OpenAI-compatible API. Requires the Connectors API.
+ * Version:           1.0.0
+ * Requires at least: 6.7
+ * Requires PHP:      7.0
  * Author:            x64neco
+ * Author URI:        https://github.com/x64neco
+ * Text Domain:       ai-engine-wordpress
+ * Domain Path:       /languages
  * License:           GPL-2.0-or-later
  * License URI:       https://spdx.org/licenses/GPL-2.0-or-later.html
  */
@@ -13,8 +18,23 @@ declare( strict_types=1 );
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Load plugin text domain for translations.
+ */
+add_action(
+	'plugins_loaded',
+	static function (): void {
+		load_plugin_textdomain(
+			'ai-engine-wordpress',
+			false,
+			dirname( plugin_basename( __FILE__ ) ) . '/languages'
+		);
+	}
+);
 
-//Connectors API カード登録
+/**
+ * Register the Sakura AI connector card via the Connectors API.
+ */
 add_action(
 	'wp_connectors_init',
 	static function ( $registry ): void {
@@ -22,7 +42,7 @@ add_action(
 			return;
 		}
 
-		//plugin.file が必要なため自動検出されたコネクターを上書き
+		// Unregister any auto-detected connector so we can re-register with plugin.file.
 		if ( $registry->is_registered( 'sakura_ai' ) && method_exists( $registry, 'unregister' ) ) {
 			$registry->unregister( 'sakura_ai' );
 		}
@@ -30,8 +50,8 @@ add_action(
 		$registry->register(
 			'sakura_ai',
 			array(
-				'name'           => __( 'Sakura AI Engine', 'sakura-ai-connector' ),
-				'description'    => __( 'さくらインターネットの国内データセンターで稼働するAI Engine。OpenAI互換APIで高速・安全にAI機能を利用できます。', 'sakura-ai-connector' ),
+				'name'           => __( 'Sakura AI Engine', 'ai-engine-wordpress' ),
+				'description'    => __( 'AI Engine running on Sakura Internet domestic data centers. Use AI features quickly and securely via an OpenAI-compatible API.', 'ai-engine-wordpress' ),
 				'type'           => 'ai_provider',
 				'authentication' => array(
 					'method'          => 'api_key',
@@ -46,8 +66,9 @@ add_action(
 	20
 );
 
-
-//AI Client SDKを使ったプロバイダー登録関連
+/**
+ * Register the AI Client SDK provider.
+ */
 add_action(
 	'init',
 	static function (): void {
@@ -82,49 +103,11 @@ add_action(
 
 			$registry->registerProvider( \SakuraAi\Connector\Provider\SakuraAiProvider::class );
 		} catch ( \Throwable $e ) {
-			// デバッグファイルにエラーを記録
-			file_put_contents(
-				__DIR__ . '/sakura-ai-register-error.txt',
-				gmdate( 'Y-m-d H:i:s' ) . " Registration error:\n"
-				. $e->getMessage() . "\n"
-				. $e->getTraceAsString() . "\n"
-			);
+			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+				error_log( '[Sakura AI Connector] Registration error: ' . $e->getMessage() );
+			}
 		}
 	},
 	5
-);
-
-//なんかうまく動かなかったからデバッグ追加。
-add_action(
-	'admin_init',
-	static function (): void {
-		$output = "=== debug sakura ===\n";
-
-		if ( function_exists( 'wp_get_connector' ) ) {
-			$output .= "connector: " . print_r( wp_get_connector( 'sakura_ai' ), true ) . "\n";
-		}
-
-		$output .= "key: " . print_r( get_option( 'connectors_ai_sakura_ai_api_key' ), true ) . "\n";
-
-		if ( class_exists( '\\WordPress\\AiClient\\AiClient' ) ) {
-			try {
-				$r = \WordPress\AiClient\AiClient::defaultRegistry();
-				$output .= "providers: " . print_r( $r->getRegisteredProviderIds(), true ) . "\n";
-				$output .= "configured: " . print_r( $r->isProviderConfigured( 'sakura_ai' ), true ) . "\n";
-			} catch ( \Throwable $e ) {
-				$output .= "error1: " . $e->getMessage() . "\n";
-			}
-		}
-
-		if ( function_exists( 'wp_ai_get_text' ) ) {
-			try {
-				$output .= "test: " . print_r( wp_ai_get_text( 'say hello' ), true ) . "\n";
-			} catch ( \Throwable $e ) {
-				$output .= "error2: " . $e->getMessage() . "\n";
-				$output .= "trace: " . $e->getTraceAsString() . "\n";
-			}
-		}
-
-		file_put_contents( __DIR__ . '/sakura-ai-debug.txt', $output );
-	}
 );

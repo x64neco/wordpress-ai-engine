@@ -11,10 +11,15 @@ use WordPress\AiClient\Providers\OpenAiCompatibleImplementation\AbstractOpenAiCo
 
 class SakuraAiTextGenerationModel extends AbstractOpenAiCompatibleTextGenerationModel {
 
-	
-	//OpenAI プロバイダーのパターンに準拠した
-	//Request(method, uri, headers, data, options)
-	//getRequestOptions() で追加設定のはず
+	/**
+	 * Build a Request following the OpenAI-compatible provider pattern.
+	 *
+	 * @param HttpMethodEnum $method  HTTP method.
+	 * @param string         $path    API endpoint path.
+	 * @param array          $headers Request headers.
+	 * @param mixed          $data    Request body data.
+	 * @return Request
+	 */
 	protected function createRequest(
 		HttpMethodEnum $method,
 		string $path,
