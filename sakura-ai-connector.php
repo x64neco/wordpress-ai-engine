@@ -1,14 +1,14 @@
 <?php
 /**
- * Plugin Name:       Sakura AI Connector
+ * Plugin Name:       Sakura AI Connector(Unofficial)
  * Plugin URI:        https://github.com/x64neco/wordpress-ai-engine
- * Description:       Connect WordPress to Sakura Internet AI Engine via the OpenAI-compatible API. Requires the Connectors API.
+ * Description:       Unofficial: Connect WordPress to Sakura Internet AI Engine via the OpenAI-compatible API. Requires the Connectors API.
  * Version:           1.0.0
  * Requires at least: 6.7
  * Requires PHP:      7.0
  * Author:            x64neco
  * Author URI:        https://github.com/x64neco
- * Text Domain:       ai-engine-wordpress
+ * Text Domain:       sakura-ai-connector
  * Domain Path:       /languages
  * License:           GPL-2.0-or-later
  * License URI:       https://spdx.org/licenses/GPL-2.0-or-later.html

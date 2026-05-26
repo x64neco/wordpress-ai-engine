@@ -1,8 +1,8 @@
 === Sakura AI Connector ===
 Contributors:      x64neco
 Tags:              ai, sakura, openai, connector, ai-engine
-Requires at least: 6.7
-Tested up to:      6.8
+Requires at least: 7.0
+Tested up to:      7.0
 Stable tag:        1.0.0
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
@@ -23,7 +23,7 @@ Sakura AI Connector integrates WordPress with the [Sakura Internet AI Engine](ht
 
 **Requirements**
 
-* WordPress 6.7 or later.
+* WordPress 7.0.
 * The WordPress Connectors API must be available.
 * A valid Sakura Internet AI Engine API key.
 
