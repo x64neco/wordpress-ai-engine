@@ -33,7 +33,7 @@ add_action(
 );
 
 /**
- * Register the Sakura AI connector card via the Connectors API.
+ * Register the Sakura AI connector(Unofficial) card via the Connectors API.
  */
 add_action(
 	'wp_connectors_init',
@@ -105,7 +105,7 @@ add_action(
 		} catch ( \Throwable $e ) {
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
-				error_log( '[Sakura AI Connector] Registration error: ' . $e->getMessage() );
+				error_log( '[Sakura AI Connector(Unofficial)] Registration error: ' . $e->getMessage() );
 			}
 		}
 	},

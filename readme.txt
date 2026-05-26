@@ -1,4 +1,4 @@
-=== Sakura AI Connector ===
+=== Sakura AI Connector(Unofficial) ===
 Contributors:      x64neco
 Tags:              ai, sakura, openai, connector, ai-engine
 Requires at least: 7.0
@@ -12,7 +12,7 @@ Connect WordPress to Sakura Internet AI Engine via the OpenAI-compatible API.
 
 == Description ==
 
-Sakura AI Connector integrates WordPress with the [Sakura Internet AI Engine](https://cloud.sakura.ad.jp/), enabling AI-powered text generation through an OpenAI-compatible API.
+Sakura AI Connector(Unofficial) integrates WordPress with the [Sakura Internet AI Engine](https://cloud.sakura.ad.jp/), enabling AI-powered text generation through an OpenAI-compatible API.
 
 **Features**
 
@@ -42,7 +42,7 @@ Data is sent to this service when AI text generation is requested. The data sent
 
 1. Upload the `sakura-ai-connector` folder to the `/wp-content/plugins/` directory, or install directly through the WordPress plugin screen.
 2. Activate the plugin through the "Plugins" screen in WordPress.
-3. Go to the Connectors settings and approve the Sakura AI connector.
+3. Go to the Connectors settings and approve the Sakura AI connector(Unofficial).
 4. Enter your Sakura Internet AI Engine API key.
 
 == Frequently Asked Questions ==
