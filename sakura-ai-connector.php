@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/x64neco/wordpress-ai-engine
  * Description:       Unofficial: Connect WordPress to Sakura Internet AI Engine via the OpenAI-compatible API. Requires the Connectors API.
  * Version:           1.0.0
- * Requires at least: 6.7
+ * Requires at least: 7.0
  * Requires PHP:      7.0
  * Author:            x64neco
  * Author URI:        https://github.com/x64neco
