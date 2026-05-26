@@ -40,7 +40,7 @@ Data is sent to this service when AI text generation is requested. The data sent
 
 == Installation ==
 
-1. Upload the `ai-engine-wordpress` folder to the `/wp-content/plugins/` directory, or install directly through the WordPress plugin screen.
+1. Upload the `sakura-ai-connector` folder to the `/wp-content/plugins/` directory, or install directly through the WordPress plugin screen.
 2. Activate the plugin through the "Plugins" screen in WordPress.
 3. Go to the Connectors settings and approve the Sakura AI connector.
 4. Enter your Sakura Internet AI Engine API key.

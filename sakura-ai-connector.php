@@ -25,7 +25,7 @@ add_action(
 	'plugins_loaded',
 	static function (): void {
 		load_plugin_textdomain(
-			'ai-engine-wordpress',
+			'sakura-ai-connector',
 			false,
 			dirname( plugin_basename( __FILE__ ) ) . '/languages'
 		);
@@ -50,8 +50,8 @@ add_action(
 		$registry->register(
 			'sakura_ai',
 			array(
-				'name'           => __( 'Sakura AI Engine', 'ai-engine-wordpress' ),
-				'description'    => __( 'AI Engine running on Sakura Internet domestic data centers. Use AI features quickly and securely via an OpenAI-compatible API.', 'ai-engine-wordpress' ),
+				'name'           => __( 'Sakura AI Engine(Unofficial)', 'sakura-ai-connector' ),
+				'description'    => __( 'AI Engine running on Sakura Internet domestic data centers. Use AI features quickly and securely via an OpenAI-compatible API.', 'sakura-ai-connector' ),
 				'type'           => 'ai_provider',
 				'authentication' => array(
 					'method'          => 'api_key',
